@@ -1,0 +1,63 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea{
+width:280px;
+height:400px;
+ position: absolute;
+color:blue;
+}
+iframe{
+border:groove black;
+border-width:10px;
+ position: absolute;
+left:300px;
+}
+</style>
+</head>
+<body>
+
+<textarea id = "edit"> </textarea>
+<iframe height="400px" width = "400px"></iframe>
+<button  style= " position: absolute;bottom:40px;">Run</button>
+<button id = "download" style= " position: absolute;bottom:10px;">Download</button>
+<button id = "play" style="position:absolute;bottom:30px;">Run on another window</button>
+
+<script>
+var button = document.getElementsByTagName("button")[0];
+var x = document.getElementsByTagName("iframe")[0];
+var t = document.getElementById("edit");
+var play = document.getElementById('play');
+var download = document.getElementById("download");
+function bweh(){
+//console.log("hi");
+x.contentWindow.window.location.reload();
+
+var l = setTimeout(live,10);
+function live (){
+x.contentWindow.document.write(t.value);
+		}
+	}
+	function saved (){
+		var file = new Blob([t.value],{type:"text/html"});
+		var fileurl = URL.createObjectURL(file)
+		var link = document.createElement("a");
+		link.href = fileurl;
+		link.style.display = "none";
+		link.download = "index.html";
+		document.body.appendChild(link);
+		link.click();
+	}
+	function playWindow(){
+		var myWindow = window.open("", "MsgWindow", "width=1000,height=1000");
+  myWindow.document.write(t.value)
+	}
+button.addEventListener("click",bweh);
+download.addEventListener("click",saved);
+play.addEventListener('click',playWindow);
+</script>
+</body>
+</html>
