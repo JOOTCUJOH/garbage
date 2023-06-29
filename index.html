@@ -22,9 +22,10 @@ left:300px;
 <p> write your code. run it on the preview box or run it on another window. when you're done download your html </p>	
 <textarea id = "edit"> </textarea>
 <iframe height="400px" width = "400px"></iframe>
-<button  style= " position: absolute;bottom:60px;">Run</button>
-<button id = "download" style= " position: absolute;bottom:20px;">Download</button>
-<button id = "play" style="position:absolute;bottom:50px;">Run on another window</button>
+<button  style= " position: absolute;bottom:70px;margin-bottom:10px;">Run</button>
+<button  style= " position: absolute;bottom:25px;margin-bottom:10px;" onclick="saved('text/html','index.html')">Download</button>
+<button id = "play" style="position:absolute;bottom:50px;margin-bottom:10px;">Run on another window</button>
+<button id = "download" style= " position: absolute;bottom:5px;margin-bottom:10px;" onclick="saved('text/hta','index.hta')">Download as an HTA file.</button>
 <div style ="position:absolute;right:10px;width:10%;overflow:auto;">
 	<p> I know this website looks ass so mess arround with it or if you have any ideas on how to make it look good tell me on discord but none of you will not cus you guys doin stupidassshit and oamr
 always playing rocket league all day and saying that hes bussy.</p> </div>
@@ -43,13 +44,13 @@ function live (){
 x.contentWindow.document.write(t.value);
 		}
 	}
-	function saved (){
-		var file = new Blob([t.value],{type:"text/html"});
+	function saved (filetype,filename){
+		var file = new Blob([t.value],{type:filetype});
 		var fileurl = URL.createObjectURL(file)
 		var link = document.createElement("a");
 		link.href = fileurl;
 		link.style.display = "none";
-		link.download = "index.html";
+		link.download = filename;
 		document.body.appendChild(link);
 		link.click();
 	}
@@ -58,7 +59,6 @@ x.contentWindow.document.write(t.value);
   myWindow.document.write(t.value)
 	}
 button.addEventListener("click",bweh);
-download.addEventListener("click",saved);
 play.addEventListener('click',playWindow);
 </script>
 </body>
